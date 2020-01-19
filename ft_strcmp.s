@@ -6,7 +6,7 @@
 #    By: pcuadrad <pcuadrad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/18 17:52:29 by pcuadrad          #+#    #+#              #
-#    Updated: 2020/01/18 19:46:40 by pcuadrad         ###   ########.fr        #
+#    Updated: 2020/01/19 17:00:02 by pcuadrad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,27 +14,23 @@
             global  _ft_strcmp
 _ft_strcmp:
             mov     rcx, 0
-            jmp     check
-compare:
-            
-            mov     dl, BYTE [rdi + rcx]
-            cmp     BYTE [rsi + rcx], dl
-            jne     eval
-            jmp      increment
-increment:
-            inc     rcx
-check:
+loop:
             cmp     BYTE [rdi + rcx], 0
             je      eval
             cmp     BYTE [rsi + rcx], 0
             je      eval
-            jmp     compare
+            mov     dl, BYTE [rdi + rcx]
+            cmp     BYTE [rsi + rcx], dl
+            jne     eval
+            inc     rcx
+            jmp     loop
 eval:
             mov     dl, BYTE [rdi + rcx]
             sub     dl, BYTE [rsi + rcx]
             cmp     dl, 0
-            jz      equal
+            je      equal
             jl      less
+            jg      greater
 greater:
             mov     rax, 1
             ret

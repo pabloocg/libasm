@@ -6,7 +6,7 @@
 #    By: pcuadrad <pcuadrad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/18 18:35:47 by pcuadrad          #+#    #+#              #
-#    Updated: 2020/01/18 20:18:19 by pcuadrad         ###   ########.fr        #
+#    Updated: 2020/01/19 16:54:41 by pcuadrad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,15 +16,13 @@ _ft_strcpy:
 			mov		rcx, 0
 			cmp		rsi, 0
 			je		return
-			jmp		copy
-increment:
-			inc		rcx
 copy:
 			mov		dl, BYTE [rsi + rcx]
 			mov		BYTE [rdi + rcx], dl
 			cmp		dl, 0
             je      return
-			jne		increment
+			inc		rcx
+			jmp		copy
 return:
 			mov		rax, rdi
 			ret
