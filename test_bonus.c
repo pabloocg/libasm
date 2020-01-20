@@ -6,7 +6,7 @@
 /*   By: pcuadrad <pcuadrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 17:49:44 by pcuadrad          #+#    #+#             */
-/*   Updated: 2020/01/20 12:34:40 by pcuadrad         ###   ########.fr       */
+/*   Updated: 2020/01/20 20:37:25 by pcuadrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ typedef struct	s_list
 
 int				ft_list_size(t_list *begin_list);
 void			ft_list_push_front(t_list **begin_list, void *data);
-
 void			ft_list_sort(t_list **begin_list, int (*cmp)());
+
+int				ft_atoi_base(char *str, char *base);
 void			ft_list_remove_if(t_list **begin_list, void *data_ref,
 				int (*cmp)(), void (*free_fct)(void *));
-int				ft_atoi_base(char *str, char *base);
 
 int			main()
 {
-	printf("\033[1;31mTesting FUNCTION LIST_SIZE\n\033[0m");
+	printf("\033[1;31mTesting FUNCTION LIST_SIZE\n\n\033[0m");
 	t_list	tmp;
 	t_list	tmp2;
 	t_list	tmp3;
@@ -44,28 +44,39 @@ int			main()
 	tmp3.next = NULL;
 	printf("\033[1;32mSize: %d\033[0m -- \033[1;31m%d\n\033[0m", ft_list_size(&tmp), 3);
 
-	printf("\033[1;31mTesting FUNCTION LIST_PUSH_FRONT\n\033[0m");
+	printf("\033[1;31mTesting FUNCTION LIST_PUSH_FRONT\n\n\033[0m");
 	t_list	*temp;
 	temp = malloc(sizeof(t_list));
 	temp->data = "Hellos";
 	temp->next = NULL;
 	ft_list_push_front(&temp, "New Element 1");
 	printf("%s\n", temp->data);
-	temp->data = "Hellos";
 	ft_list_push_front(&temp, "New Element 2");
 	printf("%s\n", temp->data);
-	temp->data = "Hellos";
 	ft_list_push_front(&temp, "New Element 3");
 	printf("%s\n", temp->data);
 	printf("Size of the list: %d\n", ft_list_size(temp));
 
-	printf("\033[1;31mTesting FUNCTION LIST_SORT\n\033[0m");
+	printf("\033[1;31mTesting FUNCTION LIST_SORT\n\n\033[0m");
+	printf("\033[1;31mAfter:\n\033[0m");
+	t_list	*temp2;
+	temp2 = temp;
+	while (temp2)
+	{
+		printf("\033[1;31m%s\n\033[0m", temp2->data);
+		temp2 = temp2->next;
+	}
 	ft_list_sort(&temp, &strcmp);
-	printf("List order: \n");
+	printf("\033[1;32mOrder List: \n\033[0m");
 	while (temp)
 	{
-		printf("%s\n", temp->data);
+		printf("\033[1;32m%s\n\033[0m", temp->data);
 		temp = temp->next;
 	}
+	printf("\033[1;31mTesting FUNCTION ATOI_BASE\n\n\033[0m");
+	printf("%d\n", ft_atoi_base("1234", "123456"));
+	printf("%d\n", ft_atoi_base("1234", "01"));
+	printf("%d\n", ft_atoi_base("1234", "1"));
+	printf("%d\n", ft_atoi_base("1234", "123123"));
 	return (0);
 }

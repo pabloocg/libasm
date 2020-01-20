@@ -6,13 +6,13 @@
 #    By: pcuadrad <pcuadrad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/18 16:41:49 by pcuadrad          #+#    #+#              #
-#    Updated: 2020/01/20 11:59:25 by pcuadrad         ###   ########.fr        #
+#    Updated: 2020/01/20 19:55:06 by pcuadrad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = ft_strlen.s ft_write.s ft_strcmp.s ft_strcpy.s ft_read.s ft_strdup.s
 
-SRCS_BONUS = ft_list_size.s ft_list_push_front.s ft_list_sort.s
+SRCS_BONUS = ft_list_size.s ft_list_push_front.s ft_list_sort.s ft_atoi_base.s
 
 NAME = libasm.a
 
@@ -41,10 +41,10 @@ bonus:		${OBJS_BONUS}
 
 test:
 			gcc -Wall -Werror -Wextra -L. -lasm test_basic.c
-			./a.out
+			clear && ./a.out
 testbonus:
 			gcc -Wall -Werror -Wextra -L. -lasm test_bonus.c
-			./a.out
+			clear && ./a.out
 
 all:		$(NAME)
 

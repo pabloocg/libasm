@@ -6,53 +6,60 @@
 #    By: pcuadrad <pcuadrad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/19 18:59:20 by pcuadrad          #+#    #+#              #
-#    Updated: 2020/01/19 19:36:20 by pcuadrad         ###   ########.fr        #
+#    Updated: 2020/01/20 16:58:20 by pcuadrad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-				section .text
-				global	_ft_list_sort			; rdi = **begin  rsi = cmp(data1, data2)
+				section	.text
+				global	_ft_list_sort
 _ft_list_sort:
+				push	rdx
 				push	r12
-				push	r8
-				mov		rcx, [rdi]			;	rcx = *begin
-				cmp		QWORD [rdi], 0
+				cmp		rdi, 0
 				je		return
+				mov		r12, [rdi]
 				cmp		rsi, 0
-				je		return
+				je		back
 				jmp		loop1
-increment_loop:
-				mov		rcx, [rcx + 8]
-				cmp		rcx, 0
-				je		return
-				jmp		loop1
+reset:
+				mov		rcx, [rdi]
+				mov		rdx, [rcx + 8]
+				mov		[rdi], rdx
 loop1:
-				mov		r12, [rdi]		;	r12 = *begin
-				jmp		loop2
+				cmp		QWORD [rdi], 0
+				je		back
+				mov		rcx, [rdi]
+				mov		rdx, [rcx + 8]
+				jmp		check_null
 loop2:
-				cmp		r12, 0				;	!*current
-				mov		r8, [r12 + 8]		;	next = current->next
-				cmp		r8, 0				;	!*next
-				je		increment_loop
 				mov		rax, rsi
+				mov		rcx, [rdi]
 				push	rdi
 				push	rsi
-				mov		rdi, [r12]			;	rdi = current->data
-				mov		rsi, [r8]			;	rsi = next->data
+				mov		rdi, [rcx]
+				mov		rsi, [rdx]
 				call	rax
 				pop		rsi
 				pop		rdi
 				cmp		rax, 0
-				jg		swapvalues
-				mov		r12, r8		;	current = current->next
+				jg		swap
+inc_loop2:
+				mov		rdx, [rdx + 8]
+				jmp		check_null
+swap:
+				mov		rcx, [rdi]
+				mov		r8, [rcx]
+				mov		r9, [rdx]
+				mov		[rcx], r9
+				mov		[rdx], r8
+				jmp		inc_loop2
+check_null:
+				cmp		rdx, 0
+				je		reset
 				jmp		loop2
-swapvalues:
-				mov		rax, [r8]		;	tmp = next->data
-				mov		r8, [r12]		;	next->data = current->data
-				mov		[r12], rax		;	current->data = tmp
-				jmp		loop2
+back:
+				mov		[rdi], r12
 return:
-				mov		[rdi], rcx
 				pop		r12
-				pop		r8
+				pop		rdx
 				ret
