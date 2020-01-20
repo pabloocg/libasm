@@ -11,32 +11,48 @@
 # **************************************************************************** #
 
 				section .text
-				global	_ft_list_sort			; rdi = **begin_list  rsi = cmp(data1, data2)
+				global	_ft_list_sort			; rdi = **begin  rsi = cmp(data1, data2)
 _ft_list_sort:
-				mov		rcx, [rdi]
-				jmp		loop
-loop:
+				push	r12
+				push	r8
+				mov		rcx, [rdi]			;	rcx = *begin
+				cmp		QWORD [rdi], 0
+				je		return
+				cmp		rsi, 0
+				je		return
+				jmp		loop1
+increment_loop:
+				mov		rcx, [rcx + 8]
 				cmp		rcx, 0
 				je		return
-				mov		rbx, [rcx + 8]
-				cmp		rbx, 0
-				je		return
+				jmp		loop1
+loop1:
+				mov		r12, [rdi]		;	r12 = *begin
+				jmp		loop2
+loop2:
+				cmp		r12, 0				;	!*current
+				mov		r8, [r12 + 8]		;	next = current->next
+				cmp		r8, 0				;	!*next
+				je		increment_loop
+				mov		rax, rsi
 				push	rdi
 				push	rsi
-				mov		rax, rsi
-				mov		rdi, [rcx]
-				mov		rsi, [rbx]
+				mov		rdi, [r12]			;	rdi = current->data
+				mov		rsi, [r8]			;	rsi = next->data
 				call	rax
 				pop		rsi
 				pop		rdi
 				cmp		rax, 0
-				jg		swap
-				mov		rcx, [rcx + 8]
-				jmp		loop
-swap:
-				mov		dl, [rcx]
-				mov		rcx, [rbx]
-				mov		rbx, dl
-				jmp		loop
+				jg		swapvalues
+				mov		r12, r8		;	current = current->next
+				jmp		loop2
+swapvalues:
+				mov		rax, [r8]		;	tmp = next->data
+				mov		r8, [r12]		;	next->data = current->data
+				mov		[r12], rax		;	current->data = tmp
+				jmp		loop2
 return:
+				mov		[rdi], rcx
+				pop		r12
+				pop		r8
 				ret

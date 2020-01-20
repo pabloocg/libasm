@@ -12,9 +12,13 @@
 
             section .text
             global  _ft_strcmp
-_ft_strcmp:
+    _ft_strcmp:
             mov     rcx, 0
-loop:
+            cmp     rdi, 0
+            je      eval
+            cmp     rsi, 0
+            je      eval
+    loop:
             cmp     BYTE [rdi + rcx], 0
             je      eval
             cmp     BYTE [rsi + rcx], 0
@@ -24,21 +28,19 @@ loop:
             jne     eval
             inc     rcx
             jmp     loop
-eval:
+    eval:
             mov     dl, BYTE [rdi + rcx]
             sub     dl, BYTE [rsi + rcx]
             cmp     dl, 0
             je      equal
             jl      less
             jg      greater
-greater:
+    greater:
             mov     rax, 1
             ret
-less:
+    less:
             mov     rax, -1
             ret
-equal:
+    equal:
             mov     rax, 0
             ret
-
-                

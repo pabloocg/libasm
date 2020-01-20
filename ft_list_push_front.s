@@ -12,7 +12,7 @@
 
 						section .text
 						global  _ft_list_push_front
-						extern	_malloc			;rdi = **begin	rsi = *data
+						extern	_malloc
 _ft_list_push_front:
 						push	rdi
 						push	rsi

@@ -6,7 +6,7 @@
 /*   By: pcuadrad <pcuadrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 16:42:06 by pcuadrad          #+#    #+#             */
-/*   Updated: 2020/01/19 17:49:46 by pcuadrad         ###   ########.fr       */
+/*   Updated: 2020/01/20 10:45:58 by pcuadrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,26 @@ int		main()
 	printf("\033[1;32mWorks with NULL src %s\n\033[0m", ft_strcpy(dest, NULL));
 	printf("\033[1;31msrc: ta luego\033[0m -- \033[1;32mdst: %s\n\033[0m", ft_strcpy(dest, "ta luego"));
 
+	printf("\n\033[1;31mTesting FUNCTION READ\n");
+	char	buffer[100];
+	int		fd_read;
+	printf("Write something:\n\033[0m");
+	fd_read = ft_read(1, buffer, 40);
+	printf("\033[1;32mSTDIN: %s\033[0m", buffer);
+
 	printf("\n\033[1;31mTesting FUNCTION STRDUP\n\033[0m");
 	char *dest2;
 	dest2 = ft_strdup("Buenas");
-	printf("Value of dest2: %s\n", dest2);
+	printf("\033[1;32mValue of dest2: %s\n\033[0m", dest2);
 	free(dest2);
 	dest2 = ft_strdup("Vemos que se libera la memoria");
-	printf("Value of dest2: %s\n", dest2);
+	printf("\033[1;32mValue of dest2: %s\n\033[0m", dest2);
 	free(dest2);
 	dest2 = ft_strdup("Copiando frases largas para que veamos que reserva toda la memoria que necesitemos sin problema");
-	printf("Value of dest2: %s\n", dest2);
+	printf("\033[1;32mValue of dest2: %s\n\033[0m", dest2);
 	free(dest2);
 	dest2 = ft_strdup(NULL);
-	printf("(NULL value) Value of dest2: %s\n", dest2);
+	printf("\033[1;32m(NULL value) Value of dest2: %s\n\033[0ma", dest2);
 	free(dest2);
 	return (0);
 }

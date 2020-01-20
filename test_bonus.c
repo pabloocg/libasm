@@ -6,7 +6,7 @@
 /*   By: pcuadrad <pcuadrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 17:49:44 by pcuadrad          #+#    #+#             */
-/*   Updated: 2020/01/19 18:59:01 by pcuadrad         ###   ########.fr       */
+/*   Updated: 2020/01/20 12:34:40 by pcuadrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,35 +32,40 @@ int				ft_atoi_base(char *str, char *base);
 int			main()
 {
 	printf("\033[1;31mTesting FUNCTION LIST_SIZE\n\033[0m");
-	t_list	*tmp;
-	t_list	*tmp2;
-	t_list	*tmp3;
-	tmp = malloc(sizeof(t_list));
-	tmp2 = malloc(sizeof(t_list));
-	tmp3 = malloc(sizeof(t_list));
-	printf("Size: %d\n", ft_list_size(tmp));
-	tmp->next = tmp2;
-	printf("Size: %d\n", ft_list_size(tmp));
-	tmp->next->next = tmp3;
-	printf("Size: %d\n", ft_list_size(tmp));
-	free(tmp);
-	free(tmp2);
-	free(tmp3);
-	tmp = malloc(sizeof(t_list));
-	tmp->data = "Hellos";
-	ft_list_push_front(&tmp, "New Element 1");
-	printf("%s\n", tmp->data);
-	tmp->data = "Hellos";
-	ft_list_push_front(&tmp, "New Element 2");
-	printf("%s\n", tmp->data);
-	tmp->data = "Hellos";
-	ft_list_push_front(&tmp, "New Element 3");
-	printf("%s\n", tmp->data);
-	printf("Size of the list: %d\n", ft_list_size(tmp));
-	while (tmp)
+	t_list	tmp;
+	t_list	tmp2;
+	t_list	tmp3;
+	tmp.next = NULL;
+	printf("\033[1;32mSize: %d\033[0m -- \033[1;31m%d\n\033[0m", ft_list_size(&tmp), 1);
+	tmp.next = &tmp2;
+	tmp2.next = NULL;
+	printf("\033[1;32mSize: %d\033[0m -- \033[1;31m%d\n\033[0m", ft_list_size(&tmp), 2);
+	tmp.next->next = &tmp3;
+	tmp3.next = NULL;
+	printf("\033[1;32mSize: %d\033[0m -- \033[1;31m%d\n\033[0m", ft_list_size(&tmp), 3);
+
+	printf("\033[1;31mTesting FUNCTION LIST_PUSH_FRONT\n\033[0m");
+	t_list	*temp;
+	temp = malloc(sizeof(t_list));
+	temp->data = "Hellos";
+	temp->next = NULL;
+	ft_list_push_front(&temp, "New Element 1");
+	printf("%s\n", temp->data);
+	temp->data = "Hellos";
+	ft_list_push_front(&temp, "New Element 2");
+	printf("%s\n", temp->data);
+	temp->data = "Hellos";
+	ft_list_push_front(&temp, "New Element 3");
+	printf("%s\n", temp->data);
+	printf("Size of the list: %d\n", ft_list_size(temp));
+
+	printf("\033[1;31mTesting FUNCTION LIST_SORT\n\033[0m");
+	ft_list_sort(&temp, &strcmp);
+	printf("List order: \n");
+	while (temp)
 	{
-		free(tmp);
-		tmp = tmp->next;
-	}	
+		printf("%s\n", temp->data);
+		temp = temp->next;
+	}
 	return (0);
 }
