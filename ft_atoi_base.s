@@ -2,6 +2,7 @@
 				global	_ft_atoi_base
 _ft_atoi_base:
 				push	r12
+				mov		rax, 0
 				cmp		rdi, 0		;	rdi = char *str, rsi = char *base
 				je		fail
 				cmp		rsi, 0		;	check if str or base are null
@@ -34,7 +35,7 @@ inc_loop:
 				mov		r12, rcx
 loop_equal_values:
 				cmp		BYTE [rsi + rcx], 0
-				je		skip_values		;	Falta quitar espacios en blanco y demas de str, ver si tiene signo y convertirlo a la base
+				je		skip_values
 				jmp		compare
 compare:
 				inc		r12
@@ -49,8 +50,62 @@ check_len:
 				jle		fail
 				jmp		check_error_base
 skip_values:
+				mov		rcx, 0
+				jmp		loop_skip
+inc_loop_skip:
+				inc		rcx
+loop_skip:
+				cmp		BYTE [rdi + rcx], 32		; ' '
+				je		inc_loop_skip
+				cmp		BYTE [rdi + rcx], 9			; \t
+				je		inc_loop_skip
+				cmp		BYTE [rdi + rcx], 10		; \n
+				je		inc_loop_skip
+				cmp		BYTE [rdi + rcx], 11		; \r
+				je		inc_loop_skip
+				cmp		BYTE [rdi + rcx], 12		; \v
+				je		inc_loop_skip
+				cmp		BYTE [rdi + rcx], 13		; \f
+				je		inc_loop_skip
+				jmp		number_sign
+set_negative:
+				xor		bl, 0x00000001
+set_positive:
+				inc		rcx
+number_sign:
+				cmp		BYTE [rdi + rcx], 45		; '-'
+				je		set_negative
+				cmp		BYTE [rdi + rcx], 43		; '+'
+				je		set_positive
+				mov		r8, 0
+				jmp		atoi
+inc_atoi:
+				inc		rcx
+atoi:
+				cmp		BYTE [rdi + rcx], 0
+				je		result
+				mov		r9b, BYTE [rdi + rcx]
+				cmp		BYTE [rsi + r8], r9b
+				je		operation
+				cmp		BYTE [rsi + r8], 0
+				je		result
+				inc		r8
+				jmp		atoi
+operation:
+				mul		r12							; rax *= r12(len base)
+				add		rax, r8						; rax += r8 (pos base num)
+				mov		r8, 0
+				jmp		inc_atoi
+result:
 				pop		r12
-				mov		rax, 1
+				mov		rax, rax
+				cmp		bl, 0x00000001
+				je		result_neg
+				mov		bl, 0
+				ret
+result_neg:
+				mov		bl, 0
+				neg		rax
 				ret
 fail:
 				pop		r12
