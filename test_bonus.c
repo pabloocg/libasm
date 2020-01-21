@@ -6,7 +6,7 @@
 /*   By: pcuadrad <pcuadrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 17:49:44 by pcuadrad          #+#    #+#             */
-/*   Updated: 2020/01/21 17:50:31 by pcuadrad         ###   ########.fr       */
+/*   Updated: 2020/01/21 18:11:46 by pcuadrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int			main()
 		printf("\033[1;32m%s\n\033[0m", temp->data);
 		temp = temp->next;
 	}
-
+/*
 	printf("\033[1;31mTesting FUNCTION LIST_REMOVE_IF\n\n\033[0m");
 	t_list	*list1;
 	t_list	*list2;
@@ -99,7 +99,7 @@ int			main()
 		printf("\033[1;32m%s\n\033[0m", listtmp->data);
 		listtmp = listtmp->next;
 	}
-
+*/
 	printf("\033[1;31mTesting FUNCTION ATOI_BASE\n\n\033[0m");
 	printf("Number: %s -- Base: %s\n\033[1;31mExpected: %d\033[0m -- \033[1;32mResult: %d\n\033[0m", "-1234", "0123456789", -1234, ft_atoi_base("-1234", "0123456789"));
 	printf("Number: %s -- Base: %s\n\033[1;31mExpected: %d\033[0m -- \033[1;32mResult: %d\n\033[0m", "11101", "01", 29, ft_atoi_base("11101", "01"));

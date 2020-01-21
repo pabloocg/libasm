@@ -6,7 +6,7 @@
 #    By: pcuadrad <pcuadrad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/18 16:41:49 by pcuadrad          #+#    #+#              #
-#    Updated: 2020/01/21 17:15:02 by pcuadrad         ###   ########.fr        #
+#    Updated: 2020/01/21 18:11:11 by pcuadrad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ testbonus:
 			gcc -Wall -Werror -Wextra -L. -lasm test_bonus.c
 			clear && ./a.out
 
-all:		$(NAME)
+all:		$(NAME) bonus
 
 re:			fclean all
 
