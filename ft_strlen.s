@@ -10,14 +10,16 @@
 #                                                                              #
 # **************************************************************************** #
 
-			section .text
-        	global _ft_strlen
+		section .text
+        global	_ft_strlen
 _ft_strlen:
-            mov		rax, 0
-loop:
-			cmp		BYTE [rdi + rax], 0
-			je		done
-			inc		rax
-			jmp		loop
+        mov		rax, 0
+		cmp		rdi, 0
+		je		done
+loop1:
+		cmp		byte [rdi + rax], 0
+		je		done
+		inc		rax
+		jmp		loop1
 done:
-			ret
+		ret

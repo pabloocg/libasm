@@ -18,7 +18,7 @@ _ft_strdup:
 			cmp		rdi, 0
 			je		fail
 _ft_strlen:
-			cmp		BYTE [rdi + rcx], 0
+			cmp		byte [rdi + rcx], 0
 			je		_ft_malloc
 			inc		rcx
 			jmp		_ft_strlen
@@ -32,13 +32,13 @@ _ft_malloc:
 			je		fail
 _ft_strcpy:
 			mov		rcx, 0
-loop:
-			mov		dl, BYTE [rdi + rcx]
-			mov		BYTE [rax + rcx], dl
+loop1:
+			mov		dl, byte [rdi + rcx]
+			mov		byte [rax + rcx], dl
 			cmp		dl, 0
 			je		done
 			inc		rcx
-			jmp		loop
+			jmp		loop1
 done:
 			ret
 fail:

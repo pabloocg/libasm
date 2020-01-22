@@ -14,11 +14,11 @@
 				global	_ft_list_size
 _ft_list_size:
 				mov		rax, 0
-loop:
+loop1:
 				cmp		rdi, 0
 				je		done
 				mov		rdi, [rdi + 8]
 				inc		rax
-				jmp		loop
+				jmp		loop1
 done:
 				ret
