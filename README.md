@@ -82,8 +82,10 @@ typedef struct  s_list
     ```sh
     $ cd libasm && make
     ```
-3. To test the library of functions you can do:
+
 ## Usage
+
+To test the library of functions you can do:
 ```
     $ make test
     $ make testbonus
