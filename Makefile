@@ -6,14 +6,14 @@
 #    By: pcuadrad <pcuadrad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/18 16:41:49 by pcuadrad          #+#    #+#              #
-#    Updated: 2020/01/22 10:18:14 by pcuadrad         ###   ########.fr        #
+#    Updated: 2020/01/23 11:09:26 by pcuadrad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = ft_strlen.s ft_write.s ft_strcmp.s ft_strcpy.s ft_read.s ft_strdup.s
 
-SRCS_BONUS = ft_list_size.s ft_list_push_front.s ft_list_sort.s ft_atoi_base.s \
-				ft_list_remove_if.s
+SRCS_BONUS = ft_list_size_bonus.s ft_list_push_front_bonus.s ft_list_sort_bonus.s \
+			ft_atoi_base_bonus.s ft_list_remove_if_bonus.s
 
 NAME = libasm.a
 

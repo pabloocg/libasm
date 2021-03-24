@@ -6,7 +6,7 @@
 /*   By: pcuadrad <pcuadrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 16:42:06 by pcuadrad          #+#    #+#             */
-/*   Updated: 2020/01/22 10:20:04 by pcuadrad         ###   ########.fr       */
+/*   Updated: 2020/01/23 11:11:00 by pcuadrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int		main()
 	printf("	\033[1;31mResult of write: %zd\n\033[0m", write(1, "Poruasdmnassadsdoainsd asodaosi ansdoaind \n", 43));
 	printf("	\033[1;32mResult of ft_write: %zd\n\033[0m", ft_write(1, "\n", 1));
 	printf("	\033[1;31mResult of write: %zd\n\033[0m", write(1, "\n", 1));
+	printf("	\033[1;32mResult of ft_write: %zd\n\033[0m", ft_write(-1123, "\n", 1));
+	printf("	\033[1;31mResult of write: %zd\n\033[0m", write(-1123, "\n", 1));
 
 	printf("\n\033[1;31m ft_strcmp:\n\033[0m");
 	printf("	\033[1;32m  (hello, jay)    Result of ft_strcmp: %d\n\033[0m", ft_strcmp("hello", "jay"));
@@ -56,11 +58,11 @@ int		main()
 
 	printf("\n\033[1;31m ft_strcpy:\n\033[0m");
 	char dest[100];
-	printf("	\033[1;31msrc: Hola\033[0m -- 	\033[1;32mdst: %s\n\033[0m", ft_strcpy(dest, "Hola"));
-	printf("	\033[1;31msrc: Estamos probando que copie ft_strcpy\033[0m -- 	\033[1;32mdst: %s\n\033[0m", ft_strcpy(dest, "Estamos probando que copie ft_strcpy"));
-	printf("	\033[1;31msrc: 123456789\033[0m -- 	\033[1;32mdst: %s\n", ft_strcpy(dest, "123456789"));
+	printf("	\033[1;31msrc: Hola\033[0m -- \033[1;32mdst: %s\n\033[0m", ft_strcpy(dest, "Hola"));
+	printf("	\033[1;31msrc: Estamos probando que copie ft_strcpy\033[0m -- \033[1;32mdst: %s\n\033[0m", ft_strcpy(dest, "Estamos probando que copie ft_strcpy"));
+	printf("	\033[1;31msrc: 123456789\033[0m -- \033[1;32mdst: %s\n", ft_strcpy(dest, "123456789"));
 	printf("	\033[1;32mWorks with NULL src %s\n\033[0m", ft_strcpy(dest, NULL));
-	printf("	\033[1;31msrc: ta luego\033[0m -- 	\033[1;32mdst: %s\n\033[0m", ft_strcpy(dest, "ta luego"));
+	printf("	\033[1;31msrc: ta luego\033[0m -- \033[1;32mdst: %s\n\033[0m", ft_strcpy(dest, "ta luego"));
 
 	printf("\n\033[1;31m ft_read:\n");
 	char	buffer[100];

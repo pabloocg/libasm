@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-            section	.text
+			section	.text
 			global	_ft_read
 _ft_read:
 			mov		r8, rsi

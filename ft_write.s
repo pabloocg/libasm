@@ -10,23 +10,23 @@
 #                                                                              #
 # **************************************************************************** #
 
-            section .text
-            global _ft_write
+			section .text
+			global _ft_write
 _ft_write:
-            cmp     rsi, 0
-            je      error
-            mov     r8, rsi
-            mov     r9, rdx
-            mov     rax, 0x20000BD          ;   syscall fstat to check the fd
-            mov     rsi, 0
-            syscall
-            mov     rsi, r8
-            mov     rdx, r9
-            cmp     rax, 9                  ;   return 9 is an error in file descriptor
-            je      error
-            mov     rax, 0x2000004          ;   syscall write
-            syscall
-            ret
+			cmp		rsi, 0
+			je		error
+			mov		r8, rsi
+			mov		r9, rdx
+			mov		rax, 0x20000BD          ;   syscall fstat to check the fd
+			mov		rsi, 0
+			syscall
+			mov		rsi, r8
+			mov		rdx, r9
+			cmp		rax, 9                  ;   return 9 is an error in file descriptor
+			je		error
+			mov		rax, 0x2000004          ;   syscall write
+			syscall
+			ret
 error:
-            mov     rax, -1
-            ret
+			mov		rax, -1
+			ret
